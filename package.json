@@ -4,6 +4,7 @@
     "description": "REST Server",
     "main": "Server/Server.js",
     "scripts": {
+        "start": "node Server/Server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Luis Solares",
