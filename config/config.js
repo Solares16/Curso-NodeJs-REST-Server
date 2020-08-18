@@ -51,3 +51,10 @@ if (process.env.NODE_ENV === 'dev') {
 process.env.URLDB = urlDB;
 //local:  'mongodb: //localhost:27017/cafe'
 //remota: 'mongodb + srv: //solaresdb:5peNgVzC68cSJ55E@cluster0.vyzjj.mongodb.net/cafe'
+
+
+/**
+ * google client
+ */
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || '892540214397-0hf1bksj76etg97nshk93ajuo45caipv.apps.googleusercontent.com';
