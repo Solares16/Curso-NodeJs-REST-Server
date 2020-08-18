@@ -4,7 +4,11 @@ const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
-app.get('/usuario', function(req, res) {
+
+const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticacion');
+
+app.get('/usuario', verificaToken, function(req, res) {
+
 
 
 
@@ -42,7 +46,7 @@ app.get('/usuario', function(req, res) {
 });
 
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificaToken, verificaAdmin_Role], function(req, res) {
 
     let body = req.body;
 
@@ -71,7 +75,7 @@ app.post('/usuario', function(req, res) {
     });
 });
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body, ["nombre", "email", "img", "role", "estado"]);
@@ -101,7 +105,7 @@ app.put('/usuario/:id', function(req, res) {
 
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, res) {
 
     let id = req.params.id;
 
@@ -134,7 +138,8 @@ app.delete('/usuario/:id', function(req, res) {
 
         res.json({
             ok: true,
-            usuario: usuarioBorrado
+            usuario: usuarioBorrado,
+            estado: 'eliminado'
         });
 
     });
